@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechKraftiers Digital - Data Analytics Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --primary-bg:#12072b; /* Premium Dark Purple */
+    --surface:#1e0d45;     /* Dark Purple Surface */
+    --surface-light:#2d1466; /* Lighter Purple Accent Surface */
+    --accent-orange:#f97316; /* Vibrant Orange */
+    --accent-purple:#a855f7; /* Bright Purple Highlight */
+    --text-light:#f5f3ff;
+    --text-muted:#c0b6db;
+    --border-light:rgba(168,85,247,0.2);
+}
+html{
+    scroll-behavior:smooth;
+}
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(180deg,#12072b,#1a0b3e 50%,#090317 100%);
+    color:var(--text-light);
+    overflow-x:hidden;
+}
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    background:rgba(18,7,43,0.95);
+    backdrop-filter:blur(14px);
+    padding:1rem 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    border-bottom:1px solid var(--border-light);
+}
+.navbar-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:1.6rem;
+    font-weight:800;
+}
+.navbar-brand i{
+    color:var(--accent-orange);
+}
+.navbar-brand span{
+    background:linear-gradient(135deg,var(--accent-orange),var(--accent-purple));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.nav-menu{
+    display:flex;
+    list-style:none;
+    gap:2rem;
+    align-items:center;
+}
+.nav-menu a{
+    text-decoration:none;
+    color:var(--text-light);
+    font-weight:500;
+    transition:0.3s;
+}
+.nav-menu a:hover{
+    color:var(--accent-orange);
+}
+.nav-cta{
+    background:linear-gradient(135deg,var(--accent-orange),var(--accent-purple));
+    color:#fff;
+    border:none;
+    padding:12px 24px;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:600;
+    box-shadow:0 4px 15px rgba(249,115,22,0.3);
+}
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:140px 5% 80px;
+}
+.hero-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    align-items:center;
+    max-width:1200px;
+    margin:0 auto;
+}
+.hero-content h1{
+    font-size:3.5rem;
+    line-height:1.2;
+    margin-bottom:20px;
+    font-weight:800;
+}
+.hero-content h1 span{
+    color:var(--accent-orange);
+}
+.hero-content p{
+    font-size:1.1rem;
+    line-height:1.8;
+    color:var(--text-muted);
+    margin-bottom:30px;
+}
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+}
+.btn-primary,
+.btn-secondary{
+    padding:16px 30px;
+    border:none;
+    border-radius:50px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+}
+.btn-primary{
+    background:linear-gradient(135deg,var(--accent-orange),var(--accent-purple));
+    color:#fff;
+    box-shadow:0 4px 20px rgba(249,115,22,0.4);
+}
+.btn-secondary{
+    border:2px solid var(--accent-orange);
+    background:transparent;
+    color:var(--text-light);
+}
+.btn-primary:hover,
+.btn-secondary:hover{
+    transform:translateY(-5px);
+}
+.hero-image img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 25px 60px rgba(168,85,247,0.2);
+    border:1px solid var(--border-light);
+}
+.stats-container{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+.stat-card{
+    background:rgba(255,255,255,0.04);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,0.3);
+    border:1px solid var(--border-light);
+}
+.stat-card h3{
+    font-size:2rem;
+    color:var(--accent-orange);
+}
+.section{
+    padding:100px 5%;
+}
+.section-title{
+    text-align:center;
+    margin-bottom:4rem;
+}
+.section-title h2{
+    font-size:3rem;
+}
+.section-title span{
+    color:var(--accent-orange);
+}
+.section-title p{
+    color:var(--text-muted);
+    margin-top:10px;
+}
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:24px;
+    max-width:1200px;
+    margin:0 auto;
+}
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--border-light);
+    padding:32px;
+    border-radius:24px;
+    transition:transform .25s ease, border-color .25s ease;
+}
+.card:hover{
+    transform:translateY(-10px);
+    border-color:var(--accent-orange);
+    background:rgba(168,85,247,0.05);
+}
+.card h3{
+    margin-bottom:14px;
+    color:#fff;
+}
+.card p{
+    color:var(--text-muted);
+    line-height:1.8;
+}
+.curriculum{
+    padding:100px 5%;
+    background:rgba(30,13,69,0.4);
+}
+.curriculum-accordion{
+    max-width:1100px;
+    margin:auto;
+}
+.accordion-item{
+    background:var(--surface);
+    border-radius:18px;
+    margin-bottom:20px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+    border:1px solid var(--border-light);
+}
+.accordion-header{
+    width:100%;
+    background:rgba(255,255,255,0.01);
+    border:none;
+    padding:24px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:1.25rem;
+    font-weight:600;
+    cursor:pointer;
+    color:#fff;
+    transition:0.3s;
+    font-family:'Poppins',sans-serif;
+}
+.accordion-header:hover{
+    background:rgba(168,85,247,0.1);
+}
+.accordion-header i{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.05);
+    color:var(--accent-orange);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+    transition:0.3s;
+}
+.accordion-content{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+    background:rgba(18,7,43,0.6);
+}
+.accordion-content ul{
+    padding:20px 35px 30px;
+}
+.accordion-content ul li{
+    margin-bottom:12px;
+    color:var(--text-muted);
+    font-size:1rem;
+    list-style:none;
+    position:relative;
+    padding-left:22px;
+}
+.accordion-content ul li::before{
+    content:'•';
+    position:absolute;
+    left:0;
+    color:var(--accent-orange);
+    font-size:1.3rem;
+}
+.accordion-item.active .accordion-content{
+    max-height:400px;
+}
+.accordion-item.active .accordion-header i{
+    transform:rotate(45deg);
+}
+.timeline{
+    position:relative;
+    padding:40px 0;
+    max-width:1000px;
+    margin:0 auto;
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:50%;
+    width:2px;
+    background:linear-gradient(to bottom,var(--accent-orange),var(--accent-purple));
+    transform:translateX(-50%);
+}
+.timeline-step{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr;
+    margin-bottom:48px;
+}
+.timeline-card{
+    position:relative;
+    max-width:45%;
+    padding:24px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--border-light);
+    border-radius:24px;
+}
+.timeline-step:nth-child(even) .timeline-card{
+    margin-left:auto;
+}
+.timeline-number{
+    position:absolute;
+    top:24px;
+    left:50%;
+    transform:translateX(-50%);
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:var(--surface-light);
+    border:2px solid var(--accent-orange);
+    display:grid;
+    place-items:center;
+    color:#fff;
+    font-weight:800;
+    z-index:2;
+}
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:22px;
+    max-width:1200px;
+    margin:0 auto;
+}
+.tool-card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--border-light);
+    border-radius:24px;
+    padding:28px 20px;
+    text-align:center;
+    transition:transform .25s ease, border-color .25s ease;
+}
+.tool-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--accent-orange);
+    background:rgba(249,115,22,0.05);
+}
+.tool-card img{
+    width:64px;
+    height:64px;
+    object-fit:contain;
+    margin-bottom:18px;
+}
+.tool-card h4{
+    color:#fff;
+}
+.contact-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    max-width:1200px;
+    margin:0 auto;
+}
+.contact-card{
+    background:rgba(255,255,255,0.03);
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    border:1px solid var(--border-light);
+}
+.contact-card i{
+    font-size:2.5rem;
+    color:var(--accent-orange);
+    margin-bottom:20px;
+}
+.form-card{
+    background:var(--surface);
+    border:1px solid var(--border-light);
+    border-radius:32px;
+    padding:40px;
+    max-width:600px;
+    margin:0 auto;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+}
+.form-row{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+.form-row input,
+.form-row select,
+.form-row textarea{
+    width:100%;
+    border-radius:12px;
+    border:1px solid rgba(168,85,247,0.3);
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+    padding:16px 20px;
+    font-family:'Poppins',sans-serif;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus{
+    outline:none;
+    border-color:var(--accent-orange);
+}
+.form-row button{
+    background:linear-gradient(135deg,var(--accent-orange),var(--accent-purple));
+    border:none;
+    color:#fff;
+    border-radius:50px;
+    padding:16px 34px;
+    font-weight:700;
+    cursor:pointer;
+    font-size:1rem;
+    transition:0.3s;
+    box-shadow:0 4px 15px rgba(249,115,22,0.3);
+}
+.form-row button:hover{
+    transform:translateY(-3px);
+}
+footer{
+    background:#090317;
+    color:var(--text-muted);
+    text-align:center;
+    padding:30px;
+    border-top:1px solid var(--border-light);
+}
+@media(max-width:768px){
+    .hero-container{grid-template-columns:1fr;}
+    .hero-content h1{font-size:2.5rem;}
+    .nav-menu{display:none;}
+    .timeline::before, .timeline-number{display:none;}
+    .timeline-card{max-width:100%;}
+}
+</style>
+</head>
+<body>
+<nav>
+<div class="navbar-brand">
+<i class="fas fa-chart-bar"></i>
+<span>TechKraftiers</span>
+</div>
+<ul class="nav-menu">
+<li><a href="#home">Home</a></li>
+<li><a href="#why-choose">Why Us</a></li>
+<li><a href="#curriculum">Curriculum</a></li>
+<li><a href="#workflow">Workflow</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><button class="nav-cta" onclick="document.getElementById('registration-form').scrollIntoView();">Free Demo</button></li>
+</ul>
+</nav>
+
+<section class="hero" id="home">
+<div class="hero-container">
+<div class="hero-content">
+<p style="color:var(--accent-orange);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;">Professional Data Analytics Training</p>
+<h1>Your Career in Data Analytics Starts with <span>TechKraftiers</span></h1>
+<p>Build expertise in Excel, SQL, Power BI, Python, Tableau and Business Analytics through live projects, real dashboards and placement support.</p>
+<div class="hero-buttons">
+<button class="btn-primary" onclick="document.getElementById('registration-form').scrollIntoView();">Book Free Demo</button>
+<a href="Data Analytics Master Program.pptx" download class="btn-secondary"><i class="fas fa-download"></i> Download Syllabus</a>
+</div>
+<div class="stats-container">
+<div class="stat-card"><h3>500+</h3><p>Students Trained</p></div>
+<div class="stat-card"><h3>95%</h3><p>Placement Rate</p></div>
+<div class="stat-card"><h3>3</h3><p>Months Duration</p></div>
+</div>
+</div>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900" alt="Analytics Dashboard">
+</div>
+</div>
+</section>
+
+<section class="section" id="why-choose">
+<div class="section-title">
+<h2>Why Choose <span>TechKraftiers Digital</span></h2>
+<p>Our program delivers a complete analytics experience with practical training and senior mentorship.</p>
+</div>
+<div class="grid">
+<div class="card"><h3>Expert Instructors</h3><p>Learn from analytics professionals who apply modern BI and AI techniques in real organizations.</p></div>
+<div class="card"><h3>Live Project Portfolio</h3><p>Work on end-to-end case studies covering market research, operations, finance and customer analytics.</p></div>
+<div class="card"><h3>Modern Tools</h3><p>Gain confidence using Excel, Power BI, Python, SQL, Tableau, MySQL, NumPy and Pandas.</p></div>
+<div class="card"><h3>Career Support</h3><p>Receive resume revisions, interview prep, mock assessments and placement guidance.</p></div>
+</div>
+</section>
+
+<section class="curriculum" id="curriculum">
+<div class="section-title">
+<h2>Complete <span>Data Analytics Curriculum</span></h2>
+<p>A structured program built around practical modules and business-ready deliverables.</p>
+</div>
+<div class="curriculum-accordion">
+<div class="accordion-item">
+<button class="accordion-header"><span>Advanced Excel</span><i class="fas fa-plus"></i></button>
+<div class="accordion-content"><ul><li>Deep Excel skills for automation</li><li>Data analysis & modeling</li><li>Executive-ready dashboards</li></ul></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header"><span>SQL & Databases</span><i class="fas fa-plus"></i></button>
+<div class="accordion-content"><ul><li>Query, join and transform datasets</li><li>MySQL environment</li><li>Analytical workflows</li></ul></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header"><span>Power BI</span><i class="fas fa-plus"></i></button>
+<div class="accordion-content"><ul><li>Interactive reports & data storytelling</li><li>DAX models</li><li>Published dashboards for leadership</li></ul></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header"><span>Python Analytics</span><i class="fas fa-plus"></i></button>
+<div class="accordion-content"><ul><li>Pandas and NumPy arrays</li><li>Data cleaning & feature engineering</li><li>Visualization libraries</li></ul></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header"><span>Statistics & Forecasting</span><i class="fas fa-plus"></i></button>
+<div class="accordion-content"><ul><li>Statistical reasoning & probability</li><li>Regression models</li><li>Hypothesis testing</li></ul></div>
+</div>
+<div class="accordion-item">
+<button class="accordion-header"><span>Capstone Project</span><i class="fas fa-plus"></i></button>
+<div class="accordion-content"><ul><li>Polished end-to-end analytics solution</li><li>Stakeholder presentation</li><li>Portfolio building</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="workflow">
+<div class="section-title">
+<h2>Professional <span>Analytics Workflow</span></h2>
+<p>Every step of the workflow is covered in training for real business impact.</p>
+</div>
+<div class="timeline">
+<div class="timeline-step"><div class="timeline-number">1</div><div class="timeline-card"><h3>Collect Data</h3><p>Capture structured and unstructured data from surveys, databases, ERP systems and web sources.</p></div></div>
+<div class="timeline-step"><div class="timeline-number">2</div><div class="timeline-card"><h3>Prepare & Clean</h3><p>Standardize values, handle missing entries, transform formats and build a reliable dataset.</p></div></div>
+<div class="timeline-step"><div class="timeline-number">3</div><div class="timeline-card"><h3>Analyze & Model</h3><p>Use statistical analysis, SQL queries and Python scripting to identify trends and risks.</p></div></div>
+<div class="timeline-step"><div class="timeline-number">4</div><div class="timeline-card"><h3>Visualize Insights</h3><p>Design compelling dashboards, charts and reports that highlight the right decisions.</p></div></div>
+<div class="timeline-step"><div class="timeline-number">5</div><div class="timeline-card"><h3>Share Recommendations</h3><p>Translate analytics into business actions with clear storytelling and stakeholder narratives.</p></div></div>
+<div class="timeline-step"><div class="timeline-number">6</div><div class="timeline-card"><h3>Implement Change</h3><p>Support execution through KPI tracking, performance reviews and continuous improvement.</p></div></div>
+</div>
+</section>
+
+<section class="section" id="tools">
+<div class="section-title">
+<h2>Tools &amp; <span>Technologies</span></h2>
+<p>We cover the full analytics toolset so you can work confidently across reporting and database querying.</p>
+</div>
+<div class="tools-grid">
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel"><h4>Excel</h4></div>
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python"><h4>Python</h4></div>
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/4248/4248443.png" alt="SQL"><h4>SQL</h4></div>
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/732/732208.png" alt="Power BI"><h4>Power BI</h4></div>
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="Tableau"><h4>Tableau</h4></div>
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png" alt="MySQL"><h4>MySQL</h4></div>
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968357.png" alt="NumPy"><h4>NumPy</h4></div>
+<div class="tool-card"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968381.png" alt="Pandas"><h4>Pandas</h4></div>
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="section-title">
+<h2>Get In <span>Touch</span></h2>
+<p>Speak with our admissions team and reserve your seat for the next analytics batch.</p>
+</div>
+<div class="contact-container">
+<div class="contact-card"><i class="fas fa-location-dot"></i><h3>Location</h3><p>Haware's Centurion Mall, F-01A-28, First Floor, Nerul East, Navi Mumbai</p></div>
+<div class="contact-card"><i class="fas fa-phone"></i><h3>Phone</h3><p>+91 7738415492</p></div>
+<div class="contact-card"><i class="fas fa-globe"></i><h3>Website</h3><p>techkraftiersdigital.in</p></div>
+</div>
+</section>
+
+<section class="section" id="registration-form">
+<div class="section-title">
+<h2>Book Your <span>Free Demo Class</span></h2>
+<p>Fill out the form below to book a free introductory session.</p>
+</div>
+<div class="form-card">
+<form class="form-row">
+<input type="text" placeholder="Full Name" required>
+<input type="tel" placeholder="Mobile Number" required>
+<input type="email" placeholder="Email Address" required>
+<select required>
+<option value="">Select Qualification</option>
+<option>10th Pass</option>
+<option>12th Pass</option>
+<option>Graduate</option>
+<option>Post Graduate</option>
+<option>Working Professional</option>
+</select>
+<textarea placeholder="Message" rows="5"></textarea>
+<button type="submit">Register For Free Demo</button>
+</form>
+</div>
+</section>
+
+<footer>
+<p>© 2026 TechKraftiers Digital. All Rights Reserved.</p>
+</footer>
+
+<script>
+const accordionItems=document.querySelectorAll('.accordion-item');
+accordionItems.forEach(item=>{
+    const header=item.querySelector('.accordion-header');
+    header.addEventListener('click',()=>{
+        item.classList.toggle('active');
+    });
+});
+</script>
+</body>
+</html>
